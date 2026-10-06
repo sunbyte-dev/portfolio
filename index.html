@@ -933,6 +933,89 @@
       <div id="form-result"></div>
 
     </form>
+
+                  <script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  const form = document.getElementById("inquiry-form");
+  const result = document.getElementById("form-result");
+  const submitBtn = document.getElementById("submit-btn");
+
+  if (!form || !result || !submitBtn) {
+    console.error("Form elements not found.");
+    return;
+  }
+
+  form.addEventListener("submit", async function (e) {
+
+    e.preventDefault();
+
+    const originalButtonText = submitBtn.innerText;
+
+    submitBtn.disabled = true;
+    submitBtn.innerText = "Submitting...";
+
+    result.style.display = "none";
+    result.className = "";
+    result.textContent = "";
+
+    try {
+
+      const formData = new FormData(form);
+
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData,
+        headers: {
+          "Accept": "application/json"
+        }
+      });
+
+      const data = await response.json();
+
+      console.log("Web3Forms response:", data);
+
+      if (response.ok && data.success) {
+
+        result.className = "success";
+        result.textContent =
+          "Thank you! Your details have been submitted successfully.";
+
+        result.style.display = "block";
+
+        form.reset();
+
+      } else {
+
+        result.className = "error";
+        result.textContent =
+          data.message || "Something went wrong. Please try again.";
+
+        result.style.display = "block";
+
+      }
+
+    } catch (error) {
+
+      console.error("Form submission error:", error);
+
+      result.className = "error";
+      result.textContent =
+        "Unable to submit the form. Please check your internet connection and try again.";
+
+      result.style.display = "block";
+
+    } finally {
+
+      submitBtn.disabled = false;
+      submitBtn.innerText = originalButtonText;
+
+    }
+
+  });
+
+});
+</script>
                 </div>
               </div>
               <div class="col-lg-4">
@@ -1618,72 +1701,6 @@
       </div>
     </div><div class="blogPop galleryPort" blog-order="7"><div class="blogPop-content"><span class="blogClose">&times;</span><div class="gallery_portfolio_list"><div class="item overflow-hidden"><div class="port_image_gallary"><div class="card-image-1 mod-c"><div class="d-text"><h3>NEW-LAYER</h3><h5 class="d-tag">website</h5></div><img src="https://cdn.shopify.com/s/files/1/0043/7629/7544/files/NEW_LAYER_SKINCARE.png?v=1738158738" class="img-fluid" alt=""></div></div></div><div class="item overflow-hidden"><div class="port_image_gallary"><div class="card-image-1 mod-c"><div class="d-text"><h3>TE-D</h3><h5 class="d-tag">website</h5></div><img src="https://cdn.shopify.com/s/files/1/0043/7629/7544/files/TE-D.png?v=1738158818" class="img-fluid" alt=""></div></div></div><div class="item overflow-hidden"><div class="port_image_gallary"><div class="card-image-1 mod-c"><div class="d-text"><h3>BONOBOSS</h3><h5 class="d-tag">website</h5></div><img src="https://cdn.shopify.com/s/files/1/0043/7629/7544/files/Sustainable_Eyewear_Sunglasses_Optical_Frames_Prescription_Glasses_Bonoboss_International.png?v=1738158783" class="img-fluid" alt=""></div></div></div><div class="item overflow-hidden"><div class="port_image_gallary"><div class="card-image-1 mod-c"><div class="d-text"><h3>HAIR2YOU</h3><h5 class="d-tag">website</h5></div><img src="https://cdn.shopify.com/s/files/1/0043/7629/7544/files/Hair_Extensions_Fur_traumhafte_Haarverlangerungen.png?v=1738158615" class="img-fluid" alt=""></div></div></div><div class="item overflow-hidden"><div class="port_image_gallary"><div class="card-image-1 mod-c"><div class="d-text"><h3>THE CHERRY SHOP</h3><h5 class="d-tag">website</h5></div><img src="https://cdn.shopify.com/s/files/1/0043/7629/7544/files/The_Cherry_Shop.png?v=1738158468" class="img-fluid" alt=""></div></div></div><div class="item overflow-hidden"><div class="port_image_gallary"><div class="card-image-1 mod-c"><div class="d-text"><h3>TIIVRA</h3><h5 class="d-tag">website</h5></div><img src="https://cdn.shopify.com/s/files/1/0043/7629/7544/files/Tiivra___India_s_Lightest_Performance_Helmet___Composite_Fiber_Helmet.png?v=1738158682" class="img-fluid" alt=""></div></div></div><div class="item overflow-hidden"><div class="port_image_gallary"><div class="card-image-1 mod-c"><div class="d-text"><h3>KAATIL</h3><h5 class="d-tag">website</h5></div><img src="https://cdn.shopify.com/s/files/1/0043/7629/7544/files/Kaatil_-_Killer_Desi_Heat.png?v=1738236130" class="img-fluid" alt=""></div></div></div><div class="item overflow-hidden" style="background-size: cover;"><div class="port_image_gallary" style="background-size: cover;"><div class="card-image-1 mod-c" style="background-size: cover;"><div class="d-text" style="background-size: cover;"><h3>Volcom</h3><h5 class="d-tag">website</h5></div><img src="https://cdn.shopify.com/s/files/1/0043/7629/7544/files/Volcom.png?v=1755687310" class="img-fluid" alt=""></div></div></div><div class="item overflow-hidden" style="background-size: cover;"><div class="port_image_gallary" style="background-size: cover;"><div class="card-image-1 mod-c" style="background-size: cover;"><div class="d-text" style="background-size: cover;"><h3>PYKNIC</h3><h5 class="d-tag">website</h5></div><img src="https://cdn.shopify.com/s/files/1/0043/7629/7544/files/pyknic.png?v=1755687337" class="img-fluid" alt=""></div></div></div><div class="item overflow-hidden" style="background-size: cover;"><div class="port_image_gallary" style="background-size: cover;"><div class="card-image-1 mod-c" style="background-size: cover;"><div class="d-text" style="background-size: cover;"><h3>EVA</h3><h5 class="d-tag">website</h5></div><img src="https://cdn.shopify.com/s/files/1/0043/7629/7544/files/eva.png?v=1755687358" class="img-fluid" alt=""></div></div></div><div class="item overflow-hidden" style="background-size: cover;"><div class="port_image_gallary" style="background-size: cover;"><div class="card-image-1 mod-c" style="background-size: cover;"><div class="d-text" style="background-size: cover;"><h3>FS9 TACTICAL</h3><h5 class="d-tag">website</h5></div><img src="https://cdn.shopify.com/s/files/1/0043/7629/7544/files/FS9_Tactical.png?v=1755687287" class="img-fluid" alt=""></div></div></div><div class="item overflow-hidden" style="background-size: cover;"><div class="port_image_gallary" style="background-size: cover;"><div class="card-image-1 mod-c" style="background-size: cover;"><div class="d-text" style="background-size: cover;"><h3>CACAOBLEU</h3><h5 class="d-tag">website</h5></div><img src="https://cdn.shopify.com/s/files/1/0043/7629/7544/files/Cacaobleu.png?v=1755687417" class="img-fluid" alt=""></div></div></div><div class="item overflow-hidden" style="background-size: cover;"><div class="port_image_gallary" style="background-size: cover;"><div class="card-image-1 mod-c" style="background-size: cover;"><div class="d-text" style="background-size: cover;"><h3>IVOIRE</h3><h5 class="d-tag">website</h5></div><img src="https://cdn.shopify.com/s/files/1/0043/7629/7544/files/Ivoire.png?v=1755687493" class="img-fluid" alt=""></div></div></div><div class="item overflow-hidden" style="background-size: cover;"><div class="port_image_gallary" style="background-size: cover;"><div class="card-image-1 mod-c" style="background-size: cover;"><div class="d-text" style="background-size: cover;"><h3>BE TRUE KIND</h3><h5 class="d-tag">website</h5></div><img src="https://cdn.shopify.com/s/files/1/0043/7629/7544/files/Clean.png?v=1755687593" class="img-fluid" alt=""></div></div></div><div class="item overflow-hidden" style="background-size: cover;"><div class="port_image_gallary" style="background-size: cover;"><div class="card-image-1 mod-c" style="background-size: cover;"><div class="d-text" style="background-size: cover;"><h3>STEPPRS</h3><h5 class="d-tag">website</h5></div><img src="https://cdn.shopify.com/s/files/1/0043/7629/7544/files/Stepprs.png?v=1755687660" class="img-fluid" alt=""></div></div></div><div class="item overflow-hidden"><div class="port_image_gallary"><div class="card-image-1 mod-c"><div class="d-text"><h3>88ACRESS</h3><h5 class="d-tag">website</h5></div><img src="https://cdn.shopify.com/s/files/1/0043/7629/7544/files/88_ACRES___Just_Good_Nutrition_POWERED_by_SEEDS_88_Acres.png?v=1738236252" class="img-fluid" alt=""></div></div></div><div class="item overflow-hidden"><div class="port_image_gallary"><div class="card-image-1 mod-c"><div class="d-text"><h3>COMPOSITE EVERYTHING</h3><h5 class="d-tag">website</h5></div><img src="https://cdn.shopify.com/s/files/1/0043/7629/7544/files/Composite_Everything.png?v=1738236347" class="img-fluid" alt=""></div></div></div><div class="item overflow-hidden"><div class="port_image_gallary"><div class="card-image-1 mod-c"><div class="d-text"><h3>HAND IN POCKET</h3><h5 class="d-tag">website</h5></div><img src="https://cdn.shopify.com/s/files/1/0043/7629/7544/files/Hand_In_Pocket_Boutique___Women_s_Clothing___Atlanta.png?v=1738236431" class="img-fluid" alt=""></div></div></div></div></div></div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script><script src="plugins.js"></script><script src="designesia.js"></script>
-<script>
-    const form = document.getElementById('inquiry-form');
-    const result = document.getElementById('form-result');
-    const submitBtn = document.getElementById('submit-btn');
-
-    form.addEventListener('submit', async function(e) {
-
-      // Prevent page reload / redirect
-      e.preventDefault();
-
-      const originalButtonText = submitBtn.innerText;
-
-      submitBtn.disabled = true;
-      submitBtn.innerText = 'Submitting...';
-
-      result.style.display = 'none';
-      result.className = '';
-      result.innerHTML = '';
-
-      try {
-
-        const formData = new FormData(form);
-
-        const response = await fetch(
-          'https://api.web3forms.com/submit',
-          {
-            method: 'POST',
-            body: formData
-          }
-        );
-
-        const data = await response.json();
-
-        if (data.success) {
-
-          // Success
-          result.className = 'success';
-
-          result.innerHTML =
-            'Thank you! Your details have been submitted successfully.';
-
-          // Clear all fields
-          form.reset();
-
-        } else {
-
-          throw new Error(data.message);
-
-        }
-
-      } catch (error) {
-
-        console.error(error);
-
-        result.className = 'error';
-
-        result.innerHTML =
-          'Something went wrong. Please try again.';
-
-      }
-
-      submitBtn.disabled = false;
-      submitBtn.innerText = originalButtonText;
-
-    });
-  </script>
     <script>
       $(function() {
         $('.de-marquee-list').marquee({
